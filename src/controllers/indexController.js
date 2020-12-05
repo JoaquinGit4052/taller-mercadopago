@@ -18,7 +18,7 @@ module.exports = {
     console.log(req.query);
     if (req.query.status.includes('success')) {
       return res.render('success', {
-        info : req.query
+        payment_type: req.query.payment_type
       })
     }
     if (req.query.status.includes('pending')) {
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   webhooks: (req, res) => {
-    console.log('webhooks: ' + req.body)
+    console.log('webhooks: ', req.body)
   },
   comprar: (req, res) => {
     let preference = {
