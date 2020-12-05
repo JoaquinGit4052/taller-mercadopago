@@ -32,7 +32,7 @@ module.exports = {
   },
 
   webhooks: (req, res) => {
-    res.send(req.body)
+    res.send('webhooks: ' + req.body)
   },
   comprar: (req, res) => {
     let preference = {
@@ -50,7 +50,7 @@ module.exports = {
           street_number: 860
         },
       },
-      notification_url: 'https://cert-mercado-pago-2020.herokuapp.com/notifications',
+      notification_url: 'https://cert-mercado-pago-2020.herokuapp.com/webhooks',
       auto_return: 'approved',
       payment_methods: {
         installments: 12,
