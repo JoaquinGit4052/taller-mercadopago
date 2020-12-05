@@ -32,7 +32,7 @@ module.exports = {
   },
 
   webhooks: (req, res) => {
-    res.send('webhooks: ' + req.body)
+    console.log('webhooks: ' + req.body)
   },
   comprar: (req, res) => {
     let preference = {
