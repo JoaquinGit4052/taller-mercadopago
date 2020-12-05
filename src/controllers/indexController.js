@@ -17,7 +17,9 @@ module.exports = {
 
     console.log(req.query);
     if (req.query.status.includes('success')) {
-      return res.render('success')
+      return res.render('success', {
+        info : req.query
+      })
     }
     if (req.query.status.includes('pending')) {
       return res.render('pending')
@@ -79,11 +81,9 @@ module.exports = {
       .create(preference)
       .then((response) => {
         global.init_point =  response.body.init_point
-        console.log(response)
         res.render('confirm')
       })
       .catch((error) => {
-        console.log(error)
         res.send('error')
       })
   },
