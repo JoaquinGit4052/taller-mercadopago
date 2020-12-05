@@ -31,8 +31,8 @@ module.exports = {
     return res.status(404).end()
   },
 
-  notifications: (req, res) => {
-
+  webhooks: (req, res) => {
+    res.send(req.body)
   },
   comprar: (req, res) => {
     let preference = {
