@@ -18,8 +18,7 @@ module.exports = {
     if (req.query.status.includes('success')) {
       return res.render('success', {
         payment_id: req.query.payment_id,
-        order_id: req.query.merchant_order_id,
-        payment_type: req.query.payment_type,
+        payment_method: req.query.payment_method_id,
         reference: req.query.external_reference,
       })
     }

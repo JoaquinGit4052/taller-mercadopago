@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <!-- Include Head -->
-  <%- include('partials/head', { title: title }) %>
+  <%- include('partials/head', { title: title, view: 'detail' }) %>
   <body>
     <!-- Header -->
     <%- include('partials/headerNavbar') %>
@@ -17,18 +17,10 @@
       <div class="product-detail">
         <div class="row">
           <div class="col-12 col-lg-8">
-            <img
-              src="/images/products/<%= img %>"
-              alt="<%= title %>"
-              class="product-detail-img"
-            />
+            <img src="/images/products/<%= img %>" alt="<%= title %>" class="product-detail-img" />
             <p class="product-detail-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              explicabo iste in veniam ullam quod, quaerat qui veritatis ipsa
-              fuga suscipit quo voluptates tenetur? Veritatis beatae ad mollitia
-              non sit neque, quasi iure minima unde, ratione iste! A aperiam,
-              aspernatur sint dignissimos eaque aut fugiat perferendis
-              architecto optio, cumque laudantium!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo explicabo iste in veniam ullam quod, quaerat qui veritatis ipsa fuga suscipit quo voluptates tenetur? Veritatis beatae ad mollitia non sit neque, quasi iure minima unde,
+              ratione iste! A aperiam, aspernatur sint dignissimos eaque aut fugiat perferendis architecto optio, cumque laudantium!
             </p>
           </div>
           <div class="col-12 col-lg-4">
@@ -48,9 +40,7 @@
 
               <div class="mercadopago-button-container">
                 <form action="/comprar" method="POST">
-                  <button type="submit" class="mercadopago-button">
-                    Pagar la compra
-                  </button>
+                  <button type="submit" class="mercadopago-button">Pagar la compra</button>
                 </form>
               </div>
             </article>
