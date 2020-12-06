@@ -14,11 +14,10 @@ module.exports = {
   },
 
   callback: (req, res) => {
-
-    console.log(req.query);
+    console.log(req.query)
     if (req.query.status.includes('success')) {
       return res.render('success', {
-        payment_type: req.query.payment_type
+        payment_type: req.query.payment_type,
       })
     }
     if (req.query.status.includes('pending')) {
@@ -33,54 +32,55 @@ module.exports = {
 
   webhooks: (req, res) => {
     console.log('webhooks: ', req.body)
+    return res.status(200).send(req.body)
   },
   comprar: (req, res) => {
+    const host = 'https://cert-mercado-pago-2020.herokuapp.com/'
+    const url = 'callback?status='
     let preference = {
       payer: {
-        name: 'Ryan',
-        surname: 'Dahl',
+        name: 'Lalo',
+        surname: 'Landa',
         email: 'test_user_63274575@testuser.com',
         phone: {
           area_code: '11',
-          number: 55556666,
+          number: 22223333,
         },
         address: {
-          zip_code: '1234',
-          street_name: 'Monroe',
-          street_number: 860
+          zip_code: '1111',
+          street_name: '',
+          street_number: 123,
         },
       },
-      notification_url: 'https://cert-mercado-pago-2020.herokuapp.com/webhooks',
-      auto_return: 'approved',
       payment_methods: {
-        installments: 12,
-        excluded_payment_types: [
-          {'id': 'atm'}
-        ],
-        excluded_payment_methods: [
-          {'id': 'visa'}
-        ]
+        installments: 6,
+        excluded_payment_types: [{ id: 'atm' }],
+        excluded_payment_methods: [{ id: 'amex' }],
       },
       items: [
         {
           id: 1234,
-          title: 'Nombre del producto',
+          title: 'Nike Jordan',
           description: 'Dispositivo móvil de Tienda e-commerce',
-          unit_price: 450,
+          picture_url: '/images/products/jordan.jpg',
+          unit_price: 16500,
           quantity: 1,
         },
       ],
       back_urls: {
-        success: 'https://cert-mercado-pago-2020.herokuapp.com/callback?status=success',
-        pending: 'https://cert-mercado-pago-2020.herokuapp.com/callback?status=pending',
-        failure: 'https://cert-mercado-pago-2020.herokuapp.com/callback?status=failure'
-      }
+        success: host + url + 'success',
+        pending: host + url + 'pending',
+        failure: host + url + 'failure',
+      },
+      notification_url: host + 'webhooks',
+      auto_return: 'approved',
+      external_reference: 'joaquiperles@live.com.ar',
     }
 
     mercadopago.preferences
       .create(preference)
       .then((response) => {
-        global.init_point =  response.body.init_point
+        global.init_point = response.body.init_point
         res.render('confirm')
       })
       .catch((error) => {
