@@ -14,7 +14,6 @@ module.exports = {
   },
 
   callback: (req, res) => {
-    console.log(req.query)
     if (req.query.status.includes('success')) {
       return res.render('success', {
         payment_id: req.query.payment_id,
@@ -34,7 +33,7 @@ module.exports = {
 
   webhooks: (req, res) => {
     console.log('webhooks: ', req.body)
-    return res.status(200).send(req.body)
+    res.status(200).send(req.body)
   },
   comprar: (req, res) => {
     const host = 'https://cert-mercado-pago-2020.herokuapp.com/'
